@@ -2,6 +2,8 @@
 
 idempotency-key-spec is a formal rule set (R1–R12) for idempotency-key semantics — key validity, fingerprint conflicts, replay, expiry — plus a stdlib-only conformance harness that runs any adapter against those rules and prints a per-rule PASS/FAIL verdict. Use it when you implement idempotent writes and want to *prove* your state layer obeys the contract, not just hope it does.
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 Idempotency keys look simple and fail subtly: the same key replayed mid-flight, a different payload under a used key, a record that expires mid-retry, a double-complete that overwrites the stored result. Implementation libraries abound, but each bakes in private semantics, and teams discover the differences in production. The gap is at the *specification* layer: a written, testable contract that any implementation can be checked against.
